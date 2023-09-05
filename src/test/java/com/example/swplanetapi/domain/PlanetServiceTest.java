@@ -27,4 +27,10 @@ public class PlanetServiceTest {
         Assertions.assertThat(sutPlanet).isEqualTo(PlanetConstants.PLANET);
     }
 
+    @Test
+    public void createPlanet_withInvalidData_throwsException(){
+        when(planetRepository.save(PlanetConstants.INVALID_PLANET)).thenThrow(RuntimeException.class);
+        Assertions.assertThatThrownBy(()->planetService.create(PlanetConstants.INVALID_PLANET)).isInstanceOf(RuntimeException.class);
+    }
+
 }
