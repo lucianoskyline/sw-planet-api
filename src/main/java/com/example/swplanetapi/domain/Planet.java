@@ -1,5 +1,7 @@
 package com.example.swplanetapi.domain;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,9 +24,9 @@ public class Planet {
         this.terrain = terrain;
     }
 
-    public Planet(String climate, String terrain) {
-        this.climate = climate;
+    public Planet(String terrain, String climate) {
         this.terrain = terrain;
+        this.climate = climate;
     }
 
     public Long getId() {
@@ -58,4 +60,10 @@ public class Planet {
     public void setTerrain(String terrain) {
         this.terrain = terrain;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(obj, this);
+    }
+
 }
